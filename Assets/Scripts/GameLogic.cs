@@ -4,22 +4,59 @@ using UnityEngine;
 
 public class GameLogic : MonoBehaviour {
 
-    private bool isPlayerTurn = true;
     public BallController ballController;
+    public int winningScore = 10;
+
+    private bool isPlayerTurn = true;    
+    private int playerScoreCount = 0;
+    private int aiScoreCount = 0;
     
     public bool IsPlayerTurn()
     {
         return isPlayerTurn;
     }
 
-    private void SwitchTurns()
-    {
-        isPlayerTurn = !isPlayerTurn;
-    }
-
     public void StartTurn()
     {
         ballController.LaunchBall(isPlayerTurn);
-        SwitchTurns();
+    }
+
+    public void HandleGoal(string goalTag)
+    { 
+        switch (goalTag)
+        {
+            case "PlayerGoal":
+                HandleAIScoring();
+                break;
+            case "AIGoal":
+                HandlePlayerScoring();
+                break;
+        }
+
+        CheckWinCondition();
+    }
+
+    private void HandleAIScoring()
+    {
+        aiScoreCount++;
+        isPlayerTurn = true;
+    }
+
+    private void HandlePlayerScoring()
+    {
+        playerScoreCount++;
+        isPlayerTurn = false;
+    }
+
+    private void CheckWinCondition()
+    {
+        if(playerScoreCount >= winningScore)
+        {
+
+        }
+        else if(aiScoreCount >= winningScore)
+        {
+
+        }
     }
 }

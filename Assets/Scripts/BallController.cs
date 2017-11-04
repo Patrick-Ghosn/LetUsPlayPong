@@ -34,6 +34,22 @@ public class BallController : MonoBehaviour
         }
     }
     
+    public void ResetBall()
+    {        
+        StopBall();
+        ReturnToStartingPosition();
+    }
+
+    public void ReturnToStartingPosition()
+    {
+        transform.position = Vector3.zero;
+    }
+
+    public void StopBall()
+    {
+        ChangeBallSpeed(0.0f, 0.0f, false);
+    }
+    
     public void LaunchBall(bool isPlayerTurn)
     {
         ChangeBallSpeed((isPlayerTurn ? 1 : -1) * minSpeed, 0.0f, false);
