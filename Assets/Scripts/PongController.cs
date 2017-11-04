@@ -2,40 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIController : MonoBehaviour
+public class PongController : MonoBehaviour
 {
     private Rigidbody2D rigid;
-    private BoxCollider2D col;
-    public float speed = 7f;
+    public float speed = 1f;
     private bool canMoveUp = true;
     private bool canMoveDown = true;
-    public Transform ball;
 
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-        col = GetComponent<BoxCollider2D>();
     }
 
-    void Start()
+    private void Update()
     {
-
-    }
-
-    void Update()
-    {
-    //    Debug.Log(ball.position.y - transform.position.y);
-        float targetDirection = Mathf.Sign(ball.position.y - transform.position.y);
-        bool goingToCatchBall = (transform.position.y + col.offset.y + col.size.y / 2 > ball.position.y ) && (transform.position.y + col.offset.y - col.size.y / 2 < ball.position.y);
-        
-        //MovePlayer(targetDirection);
-        if(!goingToCatchBall) {
-            Debug.Log("NOT GOING TO CATCH BALL");
-            Debug.Log(col.offset.y + col.size.y / 2 + " ::::: " + ball.position.y);
-            Debug.Log(col.offset.y - col.size.y / 2 + " ::::: " + ball.position.y);
-            rigid.MovePosition(new Vector2(transform.position.x, transform.position.y + targetDirection * speed * Time.deltaTime));
+        if(!CanMoveInDirection(Mathf.Sign(rigid.velocity.y))) //safety check
+        {
+            StopPong();
         }
-        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -58,10 +42,17 @@ public class AIController : MonoBehaviour
         }
     }
 
-    private void MovePlayer(float movementSpeed)
+    public void MovePongToPosition(Vector2 targetPosition, float targetDirection)
     {
-        if ((movementSpeed > 0 && !canMoveUp)
-            || (movementSpeed < 0 && !canMoveDown))
+        if (CanMoveInDirection(targetDirection))
+        {
+            rigid.MovePosition(targetPosition);
+        }
+    }
+
+    public void MovePong(float movementSpeed)
+    {
+        if (!CanMoveInDirection(Mathf.Sign(movementSpeed)))
         {
             movementSpeed = 0;
         }
@@ -69,9 +60,9 @@ public class AIController : MonoBehaviour
         rigid.velocity = new Vector2(0, movementSpeed * speed);
     }
 
-    private void StopPlayer()
+    private void StopPong()
     {
-        MovePlayer(0);
+        MovePong(0);
     }
 
     private void HandleEnterWallCollision(Collision2D collision)
@@ -90,5 +81,20 @@ public class AIController : MonoBehaviour
     {
         canMoveUp = true;
         canMoveDown = true;
+    }
+
+    public bool CanMoveUp()
+    {
+        return canMoveUp;
+    }
+
+    public bool CanMoveDown()
+    {
+        return canMoveDown;
+    }
+
+    public bool CanMoveInDirection(float direction)
+    {
+        return (direction >= 1 && canMoveUp) || (direction <= -1 && canMoveDown);
     }
 }

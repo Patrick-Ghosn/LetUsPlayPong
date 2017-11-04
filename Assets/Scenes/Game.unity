@@ -111,14 +111,16 @@ NavMeshSettings:
 --- !u!1 &515717349
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 1684842933223368, guid: b67aea45b7498554e8f873b144970d52,
+    type: 2}
+  m_PrefabInternal: {fileID: 1702374339}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 515717351}
   - component: {fileID: 515717350}
+  - component: {fileID: 515717352}
   m_Layer: 0
-  m_Name: Background
+  m_Name: Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,8 +129,9 @@ GameObject:
 --- !u!212 &515717350
 SpriteRenderer:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 212508312375412262, guid: b67aea45b7498554e8f873b144970d52,
+    type: 2}
+  m_PrefabInternal: {fileID: 1702374339}
   m_GameObject: {fileID: 515717349}
   m_Enabled: 1
   m_CastShadows: 0
@@ -169,8 +172,9 @@ SpriteRenderer:
 --- !u!4 &515717351
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 4917151970477740, guid: b67aea45b7498554e8f873b144970d52,
+    type: 2}
+  m_PrefabInternal: {fileID: 1702374339}
   m_GameObject: {fileID: 515717349}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -179,6 +183,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &515717352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114920919435017058, guid: b67aea45b7498554e8f873b144970d52,
+    type: 2}
+  m_PrefabInternal: {fileID: 1702374339}
+  m_GameObject: {fileID: 515717349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7894ba44b4cd9604882511f933f28d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballController: {fileID: 877313844}
 --- !u!1 &695878255
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +208,7 @@ GameObject:
   - component: {fileID: 695878259}
   - component: {fileID: 695878257}
   - component: {fileID: 695878261}
+  - component: {fileID: 695878258}
   m_Layer: 0
   m_Name: AI
   m_TagString: Pong
@@ -236,6 +254,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.1}
   m_EdgeRadius: 0
+--- !u!114 &695878258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 695878255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1d1433b25e4de47b8973a6fb6e4b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
 --- !u!50 &695878259
 Rigidbody2D:
   serializedVersion: 4
@@ -888,6 +918,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1702374339
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4917151970477740, guid: b67aea45b7498554e8f873b144970d52, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917151970477740, guid: b67aea45b7498554e8f873b144970d52, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917151970477740, guid: b67aea45b7498554e8f873b144970d52, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917151970477740, guid: b67aea45b7498554e8f873b144970d52, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917151970477740, guid: b67aea45b7498554e8f873b144970d52, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917151970477740, guid: b67aea45b7498554e8f873b144970d52, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917151970477740, guid: b67aea45b7498554e8f873b144970d52, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917151970477740, guid: b67aea45b7498554e8f873b144970d52, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114920919435017058, guid: b67aea45b7498554e8f873b144970d52,
+        type: 2}
+      propertyPath: ballController
+      value: 
+      objectReference: {fileID: 877313844}
+    - target: {fileID: 1684842933223368, guid: b67aea45b7498554e8f873b144970d52, type: 2}
+      propertyPath: m_Name
+      value: Game
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: b67aea45b7498554e8f873b144970d52, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2061066927
 GameObject:
   m_ObjectHideFlags: 0
@@ -900,6 +981,7 @@ GameObject:
   - component: {fileID: 2061066929}
   - component: {fileID: 2061066931}
   - component: {fileID: 2061066932}
+  - component: {fileID: 2061066933}
   m_Layer: 0
   m_Name: Player
   m_TagString: Pong
@@ -993,7 +1075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48a99d2d7d21ba4696f7111f2c5f179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  gameLogic: {fileID: 515717352}
 --- !u!61 &2061066932
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1019,3 +1101,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.1}
   m_EdgeRadius: 0
+--- !u!114 &2061066933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2061066927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1d1433b25e4de47b8973a6fb6e4b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 7

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     private Rigidbody2D rigid;
+    private bool ballIsStopped = true;
     public float speed = 3f;
     public float maxSpeed = 10f;
     public float minSpeed = 3f;
@@ -15,16 +16,7 @@ public class BallController : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
     }
-
-    void Start()
-    {
-        float speedX = Random.Range(0, 2) * 2 - 1;
-        float speedY = Random.Range(0, 2) * 2 - 1;
-        speedX = 0.1f;
-        speedY = 0f;
-        ChangeBallSpeed( speedX * maxSpeed, speedY * maxSpeed * 0.0f);
-    }
-
+    
     void Update()
     {
     }
@@ -41,14 +33,24 @@ public class BallController : MonoBehaviour
                 break;
         }
     }
+    
+    public void LaunchBall(bool isPlayerTurn)
+    {
+        ChangeBallSpeed((isPlayerTurn ? 1 : -1) * minSpeed, 0.0f, false);
+    }
 
     public void ChangeBallSpeed(float horizontalSpeed, float verticalSpeed)
     {
+        ChangeBallSpeed(horizontalSpeed, verticalSpeed, true);
+    }
+
+    public void ChangeBallSpeed(float horizontalSpeed, float verticalSpeed, bool rectify)
+    {
         Vector2 newBallSpeed = new Vector2(horizontalSpeed, verticalSpeed);
 
-        if ( (Mathf.Abs(horizontalSpeed) < minSpeed && Mathf.Abs(verticalSpeed) < minSpeed) 
-            || Mathf.Abs(horizontalSpeed) > maxSpeed || Mathf.Abs(verticalSpeed) > maxSpeed
-            )
+        if ( rectify && ( (Mathf.Abs(horizontalSpeed) < minSpeed && Mathf.Abs(verticalSpeed) < minSpeed)
+                        ||(Mathf.Abs(horizontalSpeed) > maxSpeed || Mathf.Abs(verticalSpeed) > maxSpeed) )
+           )
         {
             newBallSpeed = RectifyBallSpeed(horizontalSpeed, verticalSpeed);
         }
