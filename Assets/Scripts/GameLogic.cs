@@ -1,23 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class GameLogic : MonoBehaviour {
-
+using UnityEngine.UI;
+public class GameLogic : MonoBehaviour
+{
     public BallController ballController;
-    public int winningScore = 10;
+    public Text playerScoreText;
+    public Text aiScoreText;
 
-    private bool isPlayerTurn = true;    
+    public int winningScore = 10;    
     private int playerScoreCount = 0;
     private int aiScoreCount = 0;
-    
+    private bool isPlayerTurn = true;
+    private bool turnStarted = false;
+
     public bool IsPlayerTurn()
     {
-        return isPlayerTurn;
+        return isPlayerTurn && !turnStarted;
     }
 
     public void StartTurn()
     {
+        turnStarted = true;
         ballController.LaunchBall(isPlayerTurn);
     }
 
@@ -39,13 +43,17 @@ public class GameLogic : MonoBehaviour {
     private void HandleAIScoring()
     {
         aiScoreCount++;
+        aiScoreText.text = aiScoreCount.ToString();
         isPlayerTurn = true;
+        turnStarted = false;
     }
 
     private void HandlePlayerScoring()
     {
         playerScoreCount++;
+        playerScoreText.text = playerScoreCount.ToString();
         isPlayerTurn = false;
+        ballController.LaunchBall(isPlayerTurn);
     }
 
     private void CheckWinCondition()

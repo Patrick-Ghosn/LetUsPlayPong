@@ -5,7 +5,6 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     private Rigidbody2D rigid;
-    private bool ballIsStopped = true;
     public float speed = 3f;
     public float maxSpeed = 10f;
     public float minSpeed = 3f;
