@@ -8,6 +8,9 @@ public class GameLogic : MonoBehaviour
     public Text playerScoreText;
     public Text aiScoreText;
     public GameObject pauseMenu;
+    public GameObject endMenu;
+    public Text endTitle;
+    public Text endText;
 
     public int winningScore = 10;    
     private int playerScoreCount = 0;
@@ -66,12 +69,22 @@ public class GameLogic : MonoBehaviour
     {
         if(playerScoreCount >= winningScore)
         {
-
+            endTitle.text = "Congratulations!";
+            endText.text = "You won the game with a score of " + playerScoreCount + " to " + aiScoreCount + "!";
+            EndGame();
         }
         else if(aiScoreCount >= winningScore)
         {
+            endTitle.text = "Game over!";
+            endText.text = "You lost the game with a score of " + playerScoreCount + " to " + aiScoreCount + "!";
+            EndGame();
+        }        
+    }
 
-        }
+    private void EndGame()
+    {
+        Time.timeScale = 0.0f;
+        endMenu.SetActive(true);
     }
 
     public void PauseGame()
