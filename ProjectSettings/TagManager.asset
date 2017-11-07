@@ -58,3 +58,6 @@ TagManager:
   - name: Board
     uniqueID: 282685623
     locked: 0
+  - name: UI
+    uniqueID: 1933945833
+    locked: 0

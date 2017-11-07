@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectOnInput : MonoBehaviour {
+public class SelectOnInput : MonoBehaviour
+{
 
 	// Use this for initialization
 	void Start () {

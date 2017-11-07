@@ -22,5 +22,8 @@ public class PlayerInput : MonoBehaviour
         {
             gameLogic.StartTurn();
         }
+        else if(Input.GetKeyDown(KeyCode.Escape)) {
+            gameLogic.PauseGame();
+        }
     }    
 }

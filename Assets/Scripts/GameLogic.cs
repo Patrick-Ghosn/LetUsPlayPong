@@ -7,13 +7,19 @@ public class GameLogic : MonoBehaviour
     public BallController ballController;
     public Text playerScoreText;
     public Text aiScoreText;
+    public GameObject pauseMenu;
 
     public int winningScore = 10;    
     private int playerScoreCount = 0;
     private int aiScoreCount = 0;
     private bool isPlayerTurn = true;
     private bool turnStarted = false;
+    private bool gamePaused = false;
 
+    public void Awake()
+    {
+        Time.timeScale = 1f;
+    }
     public bool IsPlayerTurn()
     {
         return isPlayerTurn && !turnStarted;
@@ -66,5 +72,24 @@ public class GameLogic : MonoBehaviour
         {
 
         }
+    }
+
+    public void PauseGame()
+    {        
+        Time.timeScale = 0.0f;
+        gamePaused = true;
+        pauseMenu.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        gamePaused = false;
+        pauseMenu.SetActive(false);
+    }
+
+    public bool IsGamePaused()
+    {
+        return gamePaused;
     }
 }
